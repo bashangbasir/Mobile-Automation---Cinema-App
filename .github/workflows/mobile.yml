@@ -20,7 +20,7 @@ jobs:
         
     - uses: actions/setup-node@v2
       with:
-       node-version: '12'
+       node-version: '16'
     - run: |
             npm install -g appium@v1.20.2
             appium -v
@@ -39,4 +39,4 @@ jobs:
       uses: actions/upload-artifact@v3
       with:
         name: Reports
-        path: /Users/runner/work/bashangbasir-20230802/bashangbasir-20230802/mobile/target/surefire-reports
+        path: /Users/runner/work/
