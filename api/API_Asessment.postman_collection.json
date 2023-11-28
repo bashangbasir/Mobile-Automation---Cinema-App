@@ -1,0 +1,600 @@
+{
+	"info": {
+		"_postman_id": "c44460f7-dbd9-4bdb-8d9b-d285adb776aa",
+		"name": "API Asessment",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "11300485"
+	},
+	"item": [
+		{
+			"name": "Trending -ALL - Day",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"const schema = {\r",
+							"  \"type\": \"object\",\r",
+							"  \"properties\": {\r",
+							"    \"page\": {\r",
+							"      \"type\": \"integer\"},\r",
+							"    \"results\": {\r",
+							"      \"type\": \"array\"}\r",
+							"    },\r",
+							"    \"total_pages\": {\r",
+							"      \"type\": \"integer\"\r",
+							"    },\r",
+							"    \"total_results\": {\r",
+							"      \"type\": \"integer\"\r",
+							"    },\r",
+							"  \"required\": [\r",
+							"    \"page\",\r",
+							"    \"results\",\r",
+							"    \"total_pages\",\r",
+							"    \"total_results\"\r",
+							"  ]\r",
+							"};\r",
+							"\r",
+							"pm.test('Schema is valid', () => {\r",
+							"     const response = pm.response.json();\r",
+							"     pm.expect(response).to.have.jsonSchema(schema);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "accept",
+						"value": "application/json"
+					}
+				],
+				"url": {
+					"raw": "{{baseUrl}}/trending/all/:time_window?language=en-US&api_key={{api-key}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"trending",
+						"all",
+						":time_window"
+					],
+					"query": [
+						{
+							"key": "language",
+							"value": "en-US"
+						},
+						{
+							"key": "api_key",
+							"value": "{{api-key}}"
+						}
+					],
+					"variable": [
+						{
+							"key": "time_window",
+							"value": "day"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Trending -ALL Week",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"const schema = {\r",
+							"  \"type\": \"object\",\r",
+							"  \"properties\": {\r",
+							"    \"page\": {\r",
+							"      \"type\": \"integer\"},\r",
+							"    \"results\": {\r",
+							"      \"type\": \"array\"}\r",
+							"    },\r",
+							"    \"total_pages\": {\r",
+							"      \"type\": \"integer\"\r",
+							"    },\r",
+							"    \"total_results\": {\r",
+							"      \"type\": \"integer\"\r",
+							"    },\r",
+							"  \"required\": [\r",
+							"    \"page\",\r",
+							"    \"results\",\r",
+							"    \"total_pages\",\r",
+							"    \"total_results\"\r",
+							"  ]\r",
+							"};\r",
+							"\r",
+							"pm.test('Schema is valid', () => {\r",
+							"     const response = pm.response.json();\r",
+							"     pm.expect(response).to.have.jsonSchema(schema);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "accept",
+						"value": "application/json"
+					}
+				],
+				"url": {
+					"raw": "{{baseUrl}}/trending/all/:time_window?language=en-US&api_key={{api-key}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"trending",
+						"all",
+						":time_window"
+					],
+					"query": [
+						{
+							"key": "language",
+							"value": "en-US"
+						},
+						{
+							"key": "api_key",
+							"value": "{{api-key}}"
+						},
+						{
+							"key": "page",
+							"value": "2",
+							"disabled": true
+						}
+					],
+					"variable": [
+						{
+							"key": "time_window",
+							"value": "week"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Trending -ALL Month",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 400\", function () {\r",
+							"    pm.response.to.have.status(400);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Body matches [Invalid parameters: Your request parameters are incorrect.]]\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(\"Invalid parameters: Your request parameters are incorrect.\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Status code value is 5\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.status_code).to.eql(5);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"success value is false\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.success).to.eql(false);\r",
+							"});\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "accept",
+						"value": "application/json"
+					}
+				],
+				"url": {
+					"raw": "{{baseUrl}}/trending/all/:time_window?language=ms&api_key={{api-key}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"trending",
+						"all",
+						":time_window"
+					],
+					"query": [
+						{
+							"key": "language",
+							"value": "ms"
+						},
+						{
+							"key": "api_key",
+							"value": "{{api-key}}"
+						}
+					],
+					"variable": [
+						{
+							"key": "time_window",
+							"value": "month"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Trending -ALL - en",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 400\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "accept",
+						"value": "application/json"
+					}
+				],
+				"url": {
+					"raw": "{{baseUrl}}/trending/all/:time_window?language=ms&api_key={{api-key}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"trending",
+						"all",
+						":time_window"
+					],
+					"query": [
+						{
+							"key": "language",
+							"value": "ms"
+						},
+						{
+							"key": "api_key",
+							"value": "{{api-key}}"
+						}
+					],
+					"variable": [
+						{
+							"key": "time_window",
+							"value": "day"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Trending -ALL - ar",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 400\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "accept",
+						"value": "application/json"
+					}
+				],
+				"url": {
+					"raw": "{{baseUrl}}/trending/all/:time_window?language=ar&api_key={{api-key}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"trending",
+						"all",
+						":time_window"
+					],
+					"query": [
+						{
+							"key": "language",
+							"value": "ar"
+						},
+						{
+							"key": "api_key",
+							"value": "{{api-key}}"
+						}
+					],
+					"variable": [
+						{
+							"key": "time_window",
+							"value": "day"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Trending -ALL - page 2",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 400\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Page is 2\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.page).to.eql(2);\r",
+							"});\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "accept",
+						"value": "application/json"
+					}
+				],
+				"url": {
+					"raw": "{{baseUrl}}/trending/all/:time_window?language=en-US&api_key={{api-key}}&page=2",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"trending",
+						"all",
+						":time_window"
+					],
+					"query": [
+						{
+							"key": "language",
+							"value": "en-US"
+						},
+						{
+							"key": "api_key",
+							"value": "{{api-key}}"
+						},
+						{
+							"key": "page",
+							"value": "2"
+						}
+					],
+					"variable": [
+						{
+							"key": "time_window",
+							"value": "day"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Trending -ALL - page 0",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 400\", function () {\r",
+							"    pm.response.to.have.status(400);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Body matches [Invalid page: Pages start at 1 and max at 500. They are expected to be an integer.]\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(\"Invalid page: Pages start at 1 and max at 500. They are expected to be an integer.\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Status code value is 22\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.status_code).to.eql(22);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"success value is false\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.success).to.eql(false);\r",
+							"});\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "accept",
+						"value": "application/json"
+					}
+				],
+				"url": {
+					"raw": "{{baseUrl}}/trending/all/:time_window?language=ar&api_key={{api-key}}&page=0",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"trending",
+						"all",
+						":time_window"
+					],
+					"query": [
+						{
+							"key": "language",
+							"value": "ar"
+						},
+						{
+							"key": "api_key",
+							"value": "{{api-key}}"
+						},
+						{
+							"key": "page",
+							"value": "0"
+						}
+					],
+					"variable": [
+						{
+							"key": "time_window",
+							"value": "day"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Trending -ALL - page 501",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 400\", function () {\r",
+							"    pm.response.to.have.status(400);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Body matches [Invalid page: Pages start at 1 and max at 500. They are expected to be an integer.]\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(\"Invalid page: Pages start at 1 and max at 500. They are expected to be an integer.\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Status code value is 22\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.status_code).to.eql(22);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"success value is false\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.success).to.eql(false);\r",
+							"});\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "accept",
+						"value": "application/json"
+					}
+				],
+				"url": {
+					"raw": "{{baseUrl}}/trending/all/:time_window?language=ar&api_key={{api-key}}&page=501",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"trending",
+						"all",
+						":time_window"
+					],
+					"query": [
+						{
+							"key": "language",
+							"value": "ar"
+						},
+						{
+							"key": "api_key",
+							"value": "{{api-key}}"
+						},
+						{
+							"key": "page",
+							"value": "501"
+						}
+					],
+					"variable": [
+						{
+							"key": "time_window",
+							"value": "day"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "api-key",
+			"value": "328c283cd27bd1877d9080ccb1604c91",
+			"type": "string"
+		},
+		{
+			"key": "baseUrl",
+			"value": "https://api.themoviedb.org/3"
+		}
+	]
+}
