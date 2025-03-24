@@ -36,7 +36,7 @@ jobs:
         script: mvn clean test 
 
     - name: Publish Report
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4.6.2
       with:
         name: Reports
         path: /Users/runner/work/
