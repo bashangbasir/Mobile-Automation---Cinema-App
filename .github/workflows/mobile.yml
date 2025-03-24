@@ -46,4 +46,4 @@ jobs:
       uses: actions/upload-artifact@v4.6.2
       with:
         name: Reports
-        path: /Users/runner/work/
+        path: /home/runner/work/appium-cinema-app/appium-cinema-app/mobile/target/surefire-reports
